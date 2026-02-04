@@ -28,7 +28,11 @@ SECRET_KEY = 'django-insecure-*k^dw^ht54sbvp^s+ody5sf@szd$mpfnmtn^+o#r@f98z+g@l+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'appointment-booking-system-alt7.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 AUTH_USER_MODEL = 'accounts.User'
 
