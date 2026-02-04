@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            max-width: 500px;
+            margin: auto;
+        }
+        h2 {
+            color: #2ecc71
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="card">
+            <h2>Booking Confirmation</h2>
+            <p>Dear {{ customer_name }},</p>
+            <p>Thank you for booking an appointment with us! Here are your booking details:</p>
+            <ul>
+                <li><strong>Date:</strong> {{ booking_date }}</li>
+                <li><strong>Time:</strong> {{ booking_time }}</li>
+                <li><strong>Service:</strong> {{ service_name }}</li>
+            </ul>
+            <p>Thank You for choosing our services. We look forward to seeing you!</p>
+            <div class="footer">
+                 2026 &copy; Appointment System
+            </div>
+        </div>
+    </body>
+        
+</html>
