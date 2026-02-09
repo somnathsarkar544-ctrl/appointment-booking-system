@@ -8,9 +8,27 @@ from .serializers import UserSerializer
 from django.contrib.auth.models import User
 from rest_framework import status
 
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
 # Create your views here.
 
 class RegisterView(APIView):
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['username', 'password','email'],
+            properties={
+                'username': openapi.Schema(type=openapi.TYPE_STRING, description='Username'),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, description='Password'),
+                'email': openapi.Schema(type=openapi.TYPE_STRING, description='Email'),
+            },
+        ),
+        responses={
+            201: openapi.Response(description='User registered successfully'),
+            400: openapi.Response(description='Bad request')
+        }
+    )
     def post(self,request):
         username=request.data.get('username')
         password=request.data.get('password')
