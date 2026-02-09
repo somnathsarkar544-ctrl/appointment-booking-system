@@ -5,11 +5,13 @@ from rest_framework.response import Response
 
 
 from .serializers import UserSerializer
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from rest_framework import status
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+
+User = get_user_model()
 
 # Create your views here.
 
@@ -38,7 +40,7 @@ class RegisterView(APIView):
         
         if User.objects.filter(username=username).exists():
             return Response({'error':'Username already exists'},status=400) 
-        user = User.objects.create_user(username=username,password=password,email=email)
+        User.objects.create_user(username=username,password=password,email=email)
         return Response({'message':'User registered successfully'},status=201)
 
 class ProfileView(APIView):
