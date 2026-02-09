@@ -15,6 +15,14 @@ User = get_user_model()
 
 # Create your views here.
 
+class CreateAdminOnce(APIView):
+    def get(self, request):
+        if User.objects.filter(username='admin').exists():
+            return Response({'message': 'Admin user already exists'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        User.objects.create_superuser(username='admin', password='admin123')
+        return Response({'message': 'Admin user created successfully'}, status=status.HTTP_201_CREATED)
+
 class RegisterView(APIView):
     @swagger_auto_schema(
         request_body=openapi.Schema(
