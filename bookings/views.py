@@ -74,8 +74,8 @@ class BookAppointmentView(APIView):
                 status=400
             )
 
-        try:
-            
+        
+        try:    
             appointment = Appointment.objects.create(
                 user=request.user,
                 slot=slot,
@@ -87,32 +87,30 @@ class BookAppointmentView(APIView):
             slot.save()
             
             
-           #Send HTML email confirmation
-        try:
-            html_content = render_to_string('emails/booking_conf.html', {'customer_name': request.user.get_full_name() or request.user.username, 'service_name': 'Appointment Service', 'booking_date': slot.date, 'booking_time': slot.start_time})
-            text_content = strip_tags(html_content)
-            email = EmailMultiAlternatives(
-                subject='Appointment Confirmation',
-                body=text_content,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[request.user.email],
-            )
-            email.attach_alternative(html_content, "text/html")
-            email.send(fail_silently=False)
-            logger.info(f"Sent booking confirmation email to {request.user.email}")
-        except Exception as e:
-            logger.error(f"Booking email failed :{str(e)}")
-         
-             
+            #Send HTML email confirmation
+            try:
+                html_content = render_to_string('emails/booking_conf.html', {'customer_name': request.user.get_full_name()})
+                text_content = strip_tags(html_content)
+                email = EmailMultiAlternatives(
+                    subject='Appointment Confirmation',
+                    body=text_content,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[request.user.email],
+                )   
+                email.attach_alternative(html_content, "text/html")
+                email.send(fail_silently=False)
+            except Exception as e:
+                logger.error(f"Failed to send booking confirmation email: {e}")
+                
             serializer = AppointmentSerializer(appointment)
-
             return Response(serializer.data, status=201)
-
         except IntegrityError:
             return Response(
-                {"error": "This slot is already booked"},
+                {"error": "Failed to book appointment"},
                 status=400
             )
+         
+           
 
 class MyAppointmentsView(APIView):
 
