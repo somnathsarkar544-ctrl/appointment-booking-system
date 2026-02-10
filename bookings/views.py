@@ -89,7 +89,7 @@ class BookAppointmentView(APIView):
             
             #Send HTML email confirmation
             try:
-                html_content = render_to_string('emails/booking_conf.html', {'customer_name': request.user.get_full_name()})
+                html_content = render_to_string('emails/booking_conf.html', {'customer_name': request.user.get_full_name() or request.user.username, 'service_name': 'Appointment Service', 'booking_date': slot.date, 'booking_time': slot.start_time})
                 text_content = strip_tags(html_content)
                 email = EmailMultiAlternatives(
                     subject='Appointment Confirmation',
@@ -100,8 +100,8 @@ class BookAppointmentView(APIView):
                 email.attach_alternative(html_content, "text/html")
                 email.send(fail_silently=False)
             except Exception as e:
-                logger.error(f"Failed to send booking confirmation email: {e}")
-                
+                logger.error(f"Failed to send booking confirmation email:{str(e)}")
+
             serializer = AppointmentSerializer(appointment)
             return Response(serializer.data, status=201)
         except IntegrityError:
