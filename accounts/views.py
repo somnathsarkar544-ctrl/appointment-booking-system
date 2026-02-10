@@ -10,10 +10,23 @@ from rest_framework import status
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+frpm django.conf import settings
+from django.core.mail import send_mail
 
 User = get_user_model()
 
 # Create your views here.
+
+class TestEmailView(APIView):
+    def get(self, request):
+        send_mail(
+            subject='Test Email from Django',
+            message='This is a test email sent from the Django application.',
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=['request.user.email'],
+            fail_silently=False,
+        )
+        return Response({'message': 'Test email sent successfully'})
 
 class CreateAdminOnce(APIView):
     def get(self, request):
