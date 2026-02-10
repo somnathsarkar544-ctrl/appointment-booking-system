@@ -10,7 +10,7 @@ from rest_framework import status
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-frpm django.conf import settings
+from django.conf import settings
 from django.core.mail import send_mail
 
 User = get_user_model()
