@@ -70,7 +70,7 @@ class BookAppointmentView(APIView):
             )
         except TimeSlot.DoesNotExist:
             return Response(
-                {"error": "Slot not available"},
+                {"message": "This slot is already booked or does not exist"},
                 status=400
             )
 
@@ -161,7 +161,7 @@ class CancelAppointmentView(APIView):
             )
         except Appointment.DoesNotExist:
             return Response(
-                {"error": "Appointment not found or cannot be cancelled"},
+                {"message": "Appointment not found or cannot be cancelled"},
                 status=400
             )
         #free up the slot
