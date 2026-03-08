@@ -122,7 +122,7 @@ Content-Type: application/json
 Body
 ```
 {
-  "slot_id":4
+  "slot_id": 4
 }
 ```
 # Cancel Appointment
@@ -130,7 +130,7 @@ POST/api/bookings/cancel/
 Body
 ```
 {
- "appointment_id"10
+ "appointment_id":10
 }
 ```
 # Admin Panel
