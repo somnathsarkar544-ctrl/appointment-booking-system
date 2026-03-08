@@ -1,3 +1,11 @@
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Django](https://img.shields.io/badge/Django-5.0-darkgreen)
+![DRF](https://img.shields.io/badge/DRF-3.16-red)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-green)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+![API](https://img.shields.io/badge/API-REST-orange)
+
+
 # Appointment Booking System (Django REST API)
 
 This project is a backend appointment booking system built with Django and Django REST Framework. It allows users to view available time slots, book appointments with different service providers, and receive email notifications for booking confirmations and cancellations.
