@@ -104,7 +104,7 @@ Request body
     "password":"password"
 }
 ```
-#Book an Appointment
+# Book an Appointment
 POST/api/bookings/book/
 Headers
 ```
@@ -117,7 +117,7 @@ Body
   "slot_id":4
 }
 ```
-#Cancel Appointment
+# Cancel Appointment
 POST/api/bookings/cancel/
 Body
 ```
@@ -125,7 +125,7 @@ Body
  "appointment_id"10
 }
 ```
-#Admin Panel
+# Admin Panel
 The admin dashboard allows management of:
 users,
 Service Providers,
