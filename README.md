@@ -18,11 +18,13 @@ Swagger API documentation
 
 # Technology Stack
 
-Python
-Django
-Django REST Framework
-PostgreSQL or SQLite (for development)
-JWT Authentication (SimpleJWT)
+Python,
+Django,
+Django REST Framework,
+PostgreSQL or SQLite (for development),
+JWT Authentication (SimpleJWT),
+SMTP Email integration(Gmail)
+Swagger/ OpenAPI documentation
 
 # Project Structure
 ```
@@ -37,6 +39,24 @@ appointment_system/
 ├── manage.py
 └── requirements.txt
 ```
-SMTP Email integration (Gmail)
-Swagger / OpenAPI documentation
-#
+# How the System Works
+
+Service providers are created through the admin panel.
+Each provider has working hours.
+A slot generation function creates time slots automatically for a number of days ahead.
+Users can view available slots and book one through the API.
+Once a slot is booked it becomes unavailable for others.
+When a booking is created or cancelled, the system sends an email notification to the user.
+
+# Installation
+
+clone the repository
+```
+git clone https://github.com/YOUR_USERNAME/appointment-booking-system.git
+cd appointment-booking-system
+```
+Create a virtual enviroment
+```
+python -m venv venv
+
+```
