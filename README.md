@@ -52,7 +52,7 @@ When a booking is created or cancelled, the system sends an email notification t
 
 clone the repository
 ```
-git clone https://github.com/YOUR_USERNAME/appointment-booking-system.git
+git clone https://github.com/Ysomnathsarkar544-ctrl/appointment-booking-system.git
 cd appointment-booking-system
 ```
 Create a virtual enviroment
@@ -60,3 +60,91 @@ Create a virtual enviroment
 python -m venv venv
 
 ```
+Activate the enviroment
+windows
+```
+venv\Scripts\activate
+
+```
+Install dependencies
+```
+pip install -r requirements.txt
+
+```
+Run migrations
+```
+python manage.py migrate
+
+```
+Create an admin user
+```
+python manage.py createsuperuser
+```
+Start the development server 
+```
+python manage.py runserver
+
+```
+# API Documentation
+Swagger documentation is available at:
+```
+http://127.0.0.1:8000/swagger/
+
+```
+This interface allows you to explore and test all available endpoints.
+
+# Example API Requests
+
+#GET JWT Token
+POST/api/token/
+Request body
+```
+{
+   "userame":"username",
+    "password":"password"
+}
+```
+#Book an Appointment
+POST/api/bookings/book/
+Headers
+```
+Authorization: Bearer <access_token>
+Content-Type: application/json
+```
+Body
+```
+{
+  "slot_id":4
+}
+```
+#Cancel Appointment
+POST/api/bookings/cancel/
+Body
+```
+{
+ "appointment_id"10
+}
+```
+#Admin Panel
+The admin dashboard allows management of:
+users,
+Service Providers,
+Time Slots,
+Appointments
+
+Admin URL
+```
+http://127.0.0.1:8000/admin/
+
+```
+# Future Improvements
+
+Add Redis caching for slot availability
+Background jobs for automatic slot generation using Celery
+Rate limiting for booking endpoints
+Better filtering for slot availability APIs
+
+# Author
+
+Somnath Sarkar
+
